@@ -1,0 +1,55 @@
+git使用 https://blog.csdn.net/qq_35246620/article/details/66973794
+2020-05-25
+
+第二步：通过 Git 将代码提交到 GitHub
+  在我们向远程仓库提交代码的时候，一定要先进行pull操作，再进行push操作  
+    git push origin master  把本地的代码推到远程的仓库
+    git pull origin master  把远程的代码拉到本地
+    
+1.向远处仓库（GitHub）提交代码
+    A.本地没有 Git 仓库。通过clone命令创建的本地仓库，其本身就是一个 Git 仓库了，不用再init初始化且自动关联远程仓库。
+        我们只需要在这个仓库进行修改或者添加等操作，然后commit即可
+        1.新建的Git-wh目录，从此目录进入 Git Bash：   git clone https://github.com/whsysu/DS-AL.git  =>复制到本地
+        2.进入wh-git\DS-AL  目录，复制写好的代码文件夹 eg  src/hello.py  进入git Bash:git status  
+                                                =>git add src/  git commit -m "commit src file"  提交仓库里面新添加的目录
+        3.git push origin master  将本地仓库的内容push到远程仓库  
+    
+    B.本地有 Git 仓库，并且我们已经进行了多次commit操作。
+        建立一个本地仓库，命名为local-git=>进入该仓库，进入init初始化操作=>
+        git remote add origin https://github.com/whsysu/DS-AL.git :关联远程仓库,origin为远程仓库的名字
+        1.git pull origin master命令，同步远程仓库和本地仓库
+        2.在本地仓库新建一个名为test.txt的测试文件,git add test.txt和git commit -m "add text file"，将文件test.txt添加并提交到本地仓库
+        3.git push origin master 将本地仓库修改（或者添加）的内容提交到远程仓库：
+   
+
+
+
+
+git本地配置
+git config --global user.name "名字"
+git config --global user.email "邮箱"
+global表示设置为全局可用，如果想设置局部可用，删除global即可
+
+git 基本命令
+0.在每个git操作之后，我们基本都会输入git status命令，查看仓库状态。非常有用。
+1.git init  ：初始化 Git 仓库  =》首先进入demo文件夹,右键git bush, git status 查看仓库状态
+2.git add hello.txt  [txt文件是自己写的文件]添加文件到临时缓冲区，而不是提交到Git仓库，有效防止了我们错误提交的可能性。
+3.git commit -m "text commit" ：将hello.txt文件提交到 Git 仓库,commit表示提交，-m表示提交信息，提交信息写在双引号""内
+4.git log :打印 Git 仓库提交日志
+
+5.git branch: 查看 Git 仓库的分支情况：git branch first_branch   创建一个分支
+6.git checkout first_branch ：切换到first_branch分支 git checkout -b 2_branch命令：在创建分支的同时，直接切换到新分支
+7.git merge a命令，将a分支合并到当前分支：
+8.git branch -d a   ：删除a分支：
+9.git branch -D    进行强制删除 比如某分支没被合并还有内容
+10.git tag v1.0命令，为当前分支添加标签：   git tag 可查看标签记录：
+11.git checkout v1.0即可切换到该标签下的代码状态：
+
+
+第一步：利用 SSH 完成 Git 与 GitHub 的绑定
+1.ssh-keygen -t rsa  +敲三次回车键  指定 RSA 算法生成密钥，之后就就会生成两个文件密钥id_rsa和公钥id_rsa.pub. [Windows 系统：C:\Documents and Settings\username\\.ssh]
+2.进入我们的 GitHub 主页，先点击右上角所示的倒三角▽图标，然后再点击Settins，进行设置页面；点击我们的头像亦可直接进入设置页面：
+    点击SSH and GPG Keys进入此子界面，然后点击New SSH key按钮：
+    将公钥id_rsa.pub的内容粘贴到Key处的位置（Titles的内容不填写也没事），然后点击Add SSH key 即可。
+3.输入ssh -T git@github.com进行测试：
+
